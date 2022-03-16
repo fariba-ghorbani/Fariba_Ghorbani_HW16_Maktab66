@@ -1,0 +1,35 @@
+.form-container {
+    border: 1px solid black;
+    padding: 10px;
+    flex-basis: 90%;
+    width: 90%;
+    max-width: 700px;
+}
+
+.toggle-form {
+    display: flex;
+}
+
+.toggle-form * {
+    text-align: center;
+    flex-grow: 1;
+}
+
+select {
+    flex-basis: 100%;
+    overflow: hidden;
+}
+
+select option{
+    width: 100%;
+}
+
+.field {
+    display: flex;
+    width: 100%;
+}
+
+.field *{
+    flex-basis: 100%;
+    flex-grow: 1;
+}
