@@ -137,6 +137,22 @@ option {
     background-color: rgb(17, 153, 124);
 }
 
+/* password icon */
+.wrapper {
+    position: relative;
+}
+
+.wrapper span {
+    position: absolute;
+    left: 20px; top: 50%;
+    transform: translateY(-50%);
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 1rem;
+}
+
 /* modal */
 .modal {
     font-family: 'shabnam', 'sans-serif';

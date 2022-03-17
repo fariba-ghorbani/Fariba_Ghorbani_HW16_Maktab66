@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputBox from "./InputBox";
 import { validationSignup } from "./../functions";
 import Province from "./Province";
+import { BiHide, BiShow } from 'react-icons/bi'
 
 function Signup(props) {
     const initialValues = {name:'', lastName:'', province:'', city:'', education:'',
@@ -11,6 +12,7 @@ function Signup(props) {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [submit, setSubmit] = useState(false)
+    const [password, setPassword] = useState(true)
 
 
 
@@ -22,7 +24,16 @@ function Signup(props) {
                 setProvinceData(data)
             })
     }, [])
-
+    
+    // check for submit
+    useEffect(() => {
+        if (Object.keys(formErrors).length === 0 && submit === true) {
+            props.transferData(formValues)
+            props.transferMessage("حساب کاربری شما با موفقیت ساخته شد")
+            setFormValues(initialValues)
+            setSubmit(false)
+        }
+    }, [formErrors])
 
     // change the stored input values
     const changeValues = (e) => {
@@ -33,27 +44,15 @@ function Signup(props) {
         }
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault()
         setFormErrors(validationSignup(formValues, props.accounts))
         setSubmit(true)
     }
 
-
-    useEffect(() => {
-        console.log(formValues)
-    }, [formValues])
-
-    useEffect(() => {
-        console.log(formErrors)
-        if (Object.keys(formErrors).length === 0 && submit === true) {
-            props.transferData(formValues)
-            props.transferMessage("حساب کاربری شما با موفقیت ساخته شد")
-            setFormValues(initialValues)
-            setSubmit(false)
-        }
-    }, [formErrors])
+    const changeIcon = () => {
+        setPassword(prev => !prev)
+    }
 
 
     return (
@@ -75,11 +74,8 @@ function Signup(props) {
 
             {/* the city and province */}
             <div className="field mb-3">
-                <Province 
-                handleClick={changeValues} 
-                provinceData={provinceData}
-                formValues={formValues}
-                formErrors={formErrors}/>
+                <Province handleClick={changeValues} provinceData={provinceData}
+                formValues={formValues} formErrors={formErrors}/>
             </div>
 
             {/*education and place  */}
@@ -88,30 +84,37 @@ function Signup(props) {
                 className="w-100" text="تحصیلات" type="text" 
                 name="education" value={formValues.education} onChange={changeValues}
                 />
-                
+
                 {formValues.education?
                     <InputBox 
                         className="w-100" text="محل تحصیل" type="text"
                         name="eduPlace" value={formValues.eduPlace} onChange={changeValues}
                     /> : null
                 }
+
                 {formErrors.eduPlace? <p className="error mt-2 mb-0">{formErrors.eduPlace}</p>: null}
             </div>
 
-            {/*email and password  */}
+            {/* email */}
             <div className="field mb-3">
             <InputBox text="پست الکترونیک" type="text" name="email" value={formValues.email} onChange={changeValues}/>
             {formErrors.email? <p className="error mt-2 mb-0">{formErrors.email}</p>: null}
             </div>
 
-            <div className="field mb-3">
-            <InputBox text="کلمه عبور" type="password" name="password" value={formValues.password} onChange={changeValues}/>
+            {/* password */}
+            <div className="field mb-3 w-100">
+                <div className="wrapper">
+                    <InputBox text="کلمه عبور" type={password? "password":"text"} 
+                    name="password" value={formValues.password} onChange={changeValues}/>
+                    <span>{password? 
+                    <BiHide className="icon" onClick={changeIcon}/> : <BiShow className="icon" onClick={changeIcon}/>}</span>
+                </div>
             {formErrors.password? <p className="error mt-2 mb-0">{formErrors.password}</p>: null}
             </div>
-            
+
+            {/* submit */}
             <button className="submit mt-3" type="submit">ثبت نام</button>
         </form>
-        
         </>
     )   
 }

@@ -11,7 +11,7 @@ function ManageRegistration() {
 
     
     useEffect(() => {
-        console.log("from management", accounts)
+        console.log("accounts updated", accounts)
     }, [accounts])
     
     const getInformation = (newAcc) => {

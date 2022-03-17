@@ -3,15 +3,15 @@ export const validationSignup = (values, accounts) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     // name validation
     if (!values.name) {
-        errors.name = "لطفا نام خود را وارد کنید.";
+        errors.name = "لطفا نام خود را وارد کنید";
     }
     // last-name validation
     if (!values.lastName) {
-        errors.lastName = "لطفا نام خانوادگی خود را وارد کنید.";
+        errors.lastName = "لطفا نام خانوادگی خود را وارد کنید";
     }
     // email validation
     if (!values.email) {
-        errors.email = "لطفا پست الکترونیکی خود را وارد کنید.";
+        errors.email = "لطفا پست الکترونیکی خود را وارد کنید";
     } else if (!regex.test(values.email)) {
         errors.email = "پست الکترونیکی وارد شده معتبر نیست";
     } else if (accounts.some(item => item.email === values.email)) {
@@ -19,11 +19,11 @@ export const validationSignup = (values, accounts) => {
     }
     // password validation
     if (!values.password) {
-        errors.password = "لطفا کلمه عبور را وارد کنید.";
+        errors.password = "لطفا کلمه عبور را وارد کنید";
     }
     // place validation
     if (!values.city) {
-        errors.place = "لطفا محل زندگی خود را انتخاب کنید.";
+        errors.place = "لطفا محل زندگی خود را انتخاب کنید";
     }
     // education validation
     if (values.education && !values.eduPlace) {
