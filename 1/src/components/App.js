@@ -25,10 +25,10 @@ function App() {
 
   const changeValue1 = useCallback(() => {
     setValue1(ref1.current.value);
-  }, [ref1]);
+  }, [setValue1]);
   const changeValue2 = useCallback(() => {
     setValue2(ref2.current.value);
-  }, [ref2]);
+  }, [setValue2]);
 
   return (
     <div className="App">
