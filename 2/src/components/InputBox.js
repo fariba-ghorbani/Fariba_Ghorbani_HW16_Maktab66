@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function InputBox(props) {
     
-
     return (
         <>
-            <input 
+            <input
+                className="w-100" 
                 placeholder={props.text}
                 type={props.type}
                 name={props.name}

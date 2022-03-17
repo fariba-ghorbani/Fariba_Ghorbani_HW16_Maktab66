@@ -23,7 +23,7 @@ export const validationSignup = (values, accounts) => {
     }
     // place validation
     if (!values.city) {
-        errors.place = "لطفا محل زندگی خود را وارد کنید.";
+        errors.place = "لطفا محل زندگی خود را انتخاب کنید.";
     }
     // education validation
     if (values.education && !values.eduPlace) {
@@ -43,7 +43,7 @@ export const validationLogin = (values, accounts) => {
     let passValid = false;
     // email validation
     if (!values.email) {
-        errors.email = "لطفا پست الکترونیکی خود را وارد کنید.";
+        errors.email = "لطفا پست الکترونیکی خود را وارد کنید";
     } else if (!regex.test(values.email)) {
         errors.email = "پست الکترونیکی وارد شده معتبر نیست";
     } else {
@@ -51,7 +51,7 @@ export const validationLogin = (values, accounts) => {
     }
     // password validation
     if (!values.password) {
-        errors.password = "لطفا کلمه عبور را وارد کنید.";
+        errors.password = "لطفا کلمه عبور را وارد کنید";
     } else {
         passValid = true;
     }

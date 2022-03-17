@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import InputBox from './InputBox';
-import { validationLogin } from './functions'
+import { validationLogin } from './../functions'
 
 function Login(props) {
     const initialValues = {email:'', password:''}
@@ -24,25 +24,29 @@ function Login(props) {
 
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && submit === true) {
-            // console.log("you are logged in")
+            props.transferMessage("شما با موفقیت وارد حساب کاربری خود شدید")
             setFormValues(initialValues)
+            setSubmit(false)
         }
     }, [formErrors])
 
 
     return (
+        <>
+        <h2 className='title text-center my-4'>خوش آمدید</h2>
         <form onSubmit={handleSubmit}>
-            <div className="field">
-            <InputBox text="پست الکترونیک" type="text" name="email" value={formValues.email} onChange={changeValues}/>
-            {formErrors.email? <p>{formErrors.email}</p>: null}
+            <div className="field mb-3">
+                <InputBox text="پست الکترونیک" type="text" name="email" value={formValues.email} onChange={changeValues}/>
+                {formErrors.email? <p className='error mt-2'>{formErrors.email}</p>: null}
             </div>
-            <div className="field">
-            <InputBox text="کلمه عبور" type="text" name="password" value={formValues.password} onChange={changeValues}/>
-            {formErrors.password? <p>{formErrors.password}</p>: null}
+            <div className="field mb-3">
+                <InputBox text="کلمه عبور" type="text" name="password" value={formValues.password} onChange={changeValues}/>
+                {formErrors.password? <p className='error mt-2'>{formErrors.password}</p>: null}
             </div>
-            {formErrors.ultimateMSG? <p>{formErrors.ultimateMSG}</p>: null}
-            <button type='submit'>ورود</button>
+            {formErrors.ultimateMSG? <p className='log-error error mt-2'>{formErrors.ultimateMSG}</p>: null}
+            <button className="submit mt-3" type='submit'>ورود</button>
         </form>
+        </>
     )
 }
 
