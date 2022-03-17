@@ -1,6 +1,7 @@
+import { memo } from "react";
 const Button = function ({ children, onClick }) {
-  console.log("button render");
+  console.log(`button render`);
   return <button onClick={onClick}>{children}</button>;
 };
 
-export default Button;
+export default memo(Button);
